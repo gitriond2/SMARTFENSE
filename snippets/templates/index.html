@@ -1,0 +1,29 @@
+{% extends "base.html" %} {% block content %}
+<div class="row justify-content-md-center" style="padding-top: 20px">
+  <div class="col-md-8">
+    <h1 class="py-3">Snippets</h1>
+    {% for i in snippets %}
+    <!-- SNIPPET -->
+    <div class="card">
+      <h5 class="card-header">{{ i.name }}</h5>
+      <div class="card-body">
+        <a href="{% url 'language' language=i.language.slug %}"
+          >{{ i.language.name }}</a
+        >
+        <p>{{ i.description }}</p>
+        <a href="{% url 'snippet' i.id %}" class="btn btn-primary">Ver</a>
+        {% if request.user.username == i.user.username %}
+        <a href="{% url 'snippet_edit' id=i.id %}" class="btn btn-info"
+          >Editar</a
+        >
+        <a href="{% url 'snippet_delete' id=i.id %}" class="btn btn-danger"
+          >Eliminar</a
+        >
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+    <!-- FIN SNIPPET -->
+  </div>
+</div>
+{% endblock %}

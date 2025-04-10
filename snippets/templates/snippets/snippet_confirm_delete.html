@@ -1,0 +1,11 @@
+{% extends "base.html" %} {% block content %}
+<h2>¿Estás seguro de que quieres eliminar este snippet?</h2>
+<p><strong>{{ snippet.name }}</strong></p>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger">Eliminar</button>
+  <a href="{% url 'snippet_detail' id=snippet.id %}" class="btn btn-secondary"
+    >Cancelar</a
+  >
+</form>
+{% endblock %}
